@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Prediction Result | AGRIGUIDE{% endblock %}
+{% block content %}
+<section class="result-hero">
+  <div><span class="eyebrow">PREDICTION COMPLETE</span><h1>🌾 {{ result.crop }}</h1><p>{{ result.reasons[0] }}</p></div>
+  <div class="confidence"><strong>{{ result.confidence }}%</strong><span>{{ 'ML model confidence' if result.model_used else 'Compatibility score' }}</span></div>
+</section>
+<div class="result-grid">
+  <section class="result-card"><div class="result-card-head"><span>💚</span><div><h2>Crop Health</h2><p>Project-level status</p></div></div><div class="health {{ result.health|lower|replace(' ','-') }}">{{ result.health }}</div><div class="meter"><i style="width: {{ result.health_score }}%"></i></div><small>Compatibility assessment: {{ result.health_score }}%</small></section>
+  <section class="result-card"><div class="result-card-head"><span>🗓️</span><div><h2>Suitable Season</h2><p>From project crop profile</p></div></div><div class="big-value">{{ result.season }}</div></section>
+  <section class="result-card"><div class="result-card-head"><span>🥈</span><div><h2>Other suitable crops</h2><p>{{ 'Ranked using model probability + compatibility.' if result.model_used else 'Compatibility-based suggestions.' }}</p></div></div>
+    {% for item in result.alternatives %}<div class="alt-row"><strong>{{ loop.index + 1 }}. {{ item.crop }}</strong><span>{{ item.score }}%</span></div>{% endfor %}
+  </section>
+</div>
+<section class="result-card"><div class="result-card-head"><span>🧠</span><div><h2>Why this crop?</h2><p>Transparent project explanation</p></div></div><ul class="reason-list">{% for r in result.reasons %}<li>{{ r }}</li>{% endfor %}</ul></section>
+<section class="result-card"><div class="result-card-head"><span>📋</span><div><h2>Your actual entered values</h2><p>Nothing below is replaced by hard-coded prediction values.</p></div></div>
+<div class="value-grid">{% for label, value, unit in [('N',data.N,'kg/ha'),('P',data.P,'kg/ha'),('K',data.K,'kg/ha'),('Temperature',data.temperature,'°C'),('Humidity',data.humidity,'%'),('Rainfall',data.rainfall,'mm'),('pH',data.ph,''),('Soil',data.soil,''),('Water',data.water,''),('Season',data.season,'')] %}<div><span>{{ label }}</span><strong>{{ value }}{% if unit %} {{ unit }}{% endif %}</strong></div>{% endfor %}</div></section>
+<div class="form-actions"><a class="btn secondary" href="{{ url_for('predict') }}">New Prediction</a><a class="btn primary" href="{{ url_for('history') }}">View History →</a></div>
+{% endblock %}

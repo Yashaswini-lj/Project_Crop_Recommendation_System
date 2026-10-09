@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}About | AGRIGUIDE{% endblock %}
+{% block content %}
+<section class="page-head"><span class="eyebrow">ABOUT THE PROJECT</span><h1>AGRIGUIDE</h1><p>A beginner-friendly full-stack college project combining Flask, SQLite and scikit-learn.</p></section>
+<div class="about-grid">
+  <section class="result-card"><h2>How the recommendation works</h2><p>The ML classifier receives exactly seven numeric features: N, P, K, temperature, humidity, rainfall and pH. Soil type, water availability and season are not passed into the ML model; they are evaluated by a separate compatibility layer.</p></section>
+  <section class="result-card"><h2>Security & data</h2><p>Passwords are stored as hashes. SQLite queries use parameters, and prediction history is filtered by the logged-in farmer's user ID.</p></section>
+  <section class="result-card"><h2>Project limitation</h2><p>The bundled dataset is self-contained teaching data so the project can run without downloading a dataset. For academic research, replace it with a verified standard crop dataset and retrain the model.</p></section>
+  <section class="result-card"><h2>Future improvements</h2><p>Weather APIs, regional soil datasets, Kannada localization, disease-image diagnosis and field-specific agronomy validation can be added later.</p></section>
+</div>
+{% endblock %}

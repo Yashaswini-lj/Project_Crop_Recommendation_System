@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Crop Health | AGRIGUIDE{% endblock %}
+{% block content %}
+<section class="page-head"><span class="eyebrow">CROP HEALTH</span><h1>Your latest crop health</h1><p>This status is a project-level compatibility assessment based on the latest successful prediction.</p></section>
+{% if last %}
+<div class="health-main"><div class="health-orb">💚</div><span class="eyebrow">LATEST RECOMMENDATION</span><h2>{{ last.recommended_crop }}</h2><div class="health {{ last.health|lower|replace(' ','-') }}">{{ last.health }}</div><p>Based on your latest recorded N, P, K, temperature, humidity, rainfall, pH, soil and water conditions.</p><a class="btn primary" href="{{ url_for('predict') }}">Run New Assessment</a></div>
+{% else %}<div class="empty"><div>🌱</div><h2>No health result yet</h2><p>Complete a prediction to generate your first crop health status.</p><a class="btn primary" href="{{ url_for('predict') }}">Start Prediction</a></div>{% endif %}
+<div class="note">This is a project-level recommendation and should not be treated as professional plant-disease or agronomy diagnosis.</div>
+{% endblock %}

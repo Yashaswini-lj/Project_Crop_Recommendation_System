@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Farmer Login | AGRIGUIDE{% endblock %}
+{% block content %}
+<section class="auth-page"><div class="auth-card">
+  <div class="auth-icon">🌾</div><span class="eyebrow">FARMER ACCESS</span><h1>Welcome back</h1><p>Login to continue to your AGRIGUIDE dashboard.</p>
+  <form method="post" class="form">
+    <label>Phone number<input name="phone" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number" required></label>
+    <label>Password<input type="password" name="password" placeholder="Your password" required></label>
+    <button class="btn primary full" type="submit">Login</button>
+  </form>
+  <p class="auth-bottom">New farmer? <a href="{{ url_for('register') }}">Create an account</a></p>
+</div></section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}AGRIGUIDE | Smart Farming{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">🌿 SMART AGRICULTURE</span>
+    <h1>Smart Farming Starts With <span>Better Decisions</span></h1>
+    <p>AI-powered crop recommendations for smarter and more sustainable farming. Enter your farm conditions and get a transparent project-level recommendation.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="{{ url_for('predict') if session.get('user_id') else url_for('register') }}">Start Prediction →</a>
+      <a class="btn secondary" href="{{ url_for('login') }}">Farmer Login</a>
+    </div>
+    <div class="mini-stats"><div><strong>22+</strong><span>Crops</span></div><div><strong>7</strong><span>ML inputs</span></div><div><strong>3</strong><span>Seasons</span></div></div>
+  </div>
+  <div class="hero-art"><div class="sun"></div><div class="field f1"></div><div class="field f2"></div><div class="field f3"></div><div class="farmer">👩‍🌾</div><div class="plant p1">🌾</div><div class="plant p2">🌱</div><div class="plant p3">🌿</div></div>
+</section>
+
+<section class="section">
+  <div class="section-head"><span class="eyebrow">WHY AGRIGUIDE?</span><h2>One simple place for smarter crop decisions.</h2></div>
+  <div class="feature-grid">
+    <article class="feature"><div class="icon">🤖</div><h3>ML Recommendation</h3><p>A scikit-learn classification model works with N, P, K, temperature, humidity, rainfall and pH.</p></article>
+    <article class="feature"><div class="icon">🌱</div><h3>Compatibility Layer</h3><p>Soil, water and season are evaluated separately instead of being falsely claimed as ML features.</p></article>
+    <article class="feature"><div class="icon">📊</div><h3>Prediction History</h3><p>Save successful predictions and review your own farming inputs anytime after logging in.</p></article>
+  </div>
+</section>
+
+<section class="steps section">
+  <div><span class="eyebrow">HOW IT WORKS</span><h2>From farm conditions to a recommendation.</h2>
+  <div class="step-grid">
+    <div><b>01</b><h3>Enter conditions</h3><p>Provide nutrients, weather, pH, soil, water and season.</p></div>
+    <div><b>02</b><h3>Run prediction</h3><p>The ML model and transparent compatibility rules rank suitable crops.</p></div>
+    <div><b>03</b><h3>Understand the result</h3><p>See the crop, confidence, health status, reasons and actual values.</p></div>
+  </div></div>
+</section>
+{% endblock %}

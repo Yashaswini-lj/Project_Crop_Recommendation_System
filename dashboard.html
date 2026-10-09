@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | AGRIGUIDE{% endblock %}
+{% block content %}
+<section class="dashboard-head"><div><span class="eyebrow">FARMER DASHBOARD</span><h1>Welcome, {{ session.get('name') }} 👋</h1><p>Ready to make your next crop decision?</p></div><a class="btn primary" href="{{ url_for('predict') }}">Start Prediction</a></section>
+<div class="dashboard-grid">
+  <a class="dash-card featured" href="{{ url_for('predict') }}"><div class="card-icon">🌱</div><h2>Crop Prediction</h2><p>Enter real farm conditions and receive a ranked recommendation.</p><span>Predict now →</span></a>
+  <a class="dash-card" href="{{ url_for('health') }}"><div class="card-icon">💚</div><h2>Crop Health</h2><p>Review the latest project-level health assessment.</p><span>View health →</span></a>
+  <a class="dash-card" href="{{ url_for('history') }}"><div class="card-icon">📚</div><h2>Prediction History</h2><p>{{ count }} saved prediction{{ '' if count == 1 else 's' }} for your account.</p><span>Open history →</span></a>
+</div>
+<section class="info-panel"><div><span class="eyebrow">LAST RECOMMENDATION</span><h2>{{ last['recommended_crop'] if last else 'No prediction yet' }}</h2><p>{{ last['created_at'] if last else 'Your first prediction will appear here.' }}</p></div><div class="season-badge">🌤️ Kharif · Rabi · Zaid</div></section>
+{% endblock %}

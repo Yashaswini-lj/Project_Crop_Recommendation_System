@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AGRIGUIDE AI Crop Recommendation System">
+  <title>{% block title %}AGRIGUIDE{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">🌱</span><span>AGRIGUIDE</span></a>
+  <button class="menu-btn" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  <nav id="mainNav">
+    <a href="{{ url_for('index') }}">Home</a>
+    {% if session.get('user_id') %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('predict') }}">Prediction</a>
+      <a href="{{ url_for('health') }}">Crop Health</a>
+      <a href="{{ url_for('history') }}">History</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a class="nav-cta" href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('about') }}">About</a>
+      <a class="nav-cta" href="{{ url_for('login') }}">Farmer Login</a>
+    {% endif %}
+  </nav>
+</header>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-wrap">
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<main>{% block content %}{% endblock %}</main>
+<footer><div>🌾 AGRIGUIDE · AI-assisted crop recommendation for a college project</div><div>Project-level guidance, not professional agronomy advice.</div></footer>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
